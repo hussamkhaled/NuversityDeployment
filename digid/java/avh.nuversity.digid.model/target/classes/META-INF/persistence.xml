@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+	<persistence-unit name="avh.nuversity.digid.model">
+		<class>model.Acredential</class>
+		<class>model.Auser</class>
+		<class>model.Contact</class>
+		<class>model.Egroup</class>
+		<class>model.Usergroup</class>
+		<class>avh.nuversity.digid.model.AvhCredentials</class>
+		<class>avh.nuversity.digid.model.AvhUser</class>
+		<class>avh.nuversity.digid.model.AvhContact</class>
+		<class>avh.nuversity.digid.model.AvhGroup</class>
+		<class>avh.nuversity.digid.model.AvhIddocument</class>
+		<class>avh.nuversity.digid.model.AvhUsergroup</class>
+		<class>avh.nuversity.digid.model.AvhPendingRequest</class>
+		<class>avh.nuversity.digid.model.AvhNuidsequesncenumber</class>
+		<class>avh.nuversity.digid.model.AvhMmesage</class>
+		
+	</persistence-unit>
+</persistence>
