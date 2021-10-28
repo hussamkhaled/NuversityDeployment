@@ -27,12 +27,12 @@
 		<class>avh.nuversity.lms.model.AvhOfferGradeFormat</class>
 		<class>avh.nuversity.lms.model.AvhOfferGradeLine</class>
 		<class>avh.nuversity.lms.model.AvhDepartment</class>
-		<class>avh.nuversity.lms.model.AvhCourseOfferSchedule</class>
 		<class>avh.nuversity.lms.model.AvhMajor</class>
 		<class>avh.nuversity.lms.model.AvhMajorReqDoc</class>
 		<class>avh.nuversity.lms.model.AvhFinancialDocument</class>
 		<class>avh.nuversity.lms.model.AvhFinancialOperation</class>
 		<class>avh.nuversity.lms.model.AvhFinancialAccount</class>
 		<class>avh.nuversity.lms.model.AvhEnrolmentGrade</class>
+		<class>avh.nuversity.lms.model.AvhCourseOfferSchedule</class>
 	</persistence-unit>
 </persistence>

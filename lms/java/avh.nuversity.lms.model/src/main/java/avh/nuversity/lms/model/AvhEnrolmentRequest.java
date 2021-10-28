@@ -2,7 +2,7 @@ package avh.nuversity.lms.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.sql.Timestamp;
+
 import java.time.LocalDate;
 
 

@@ -4,7 +4,7 @@ import java.io.IOException;
 
 
 import java.time.LocalDate;
-import java.util.Date;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,8 +24,7 @@ import avh.nuversity.digid.services.impl.query.ContactQuery;
 import avh.nuversity.digid.services.impl.query.CreateTeacherQuery;
 import avh.nuversity.digid.services.impl.response.CreateContactResponse;
 import avh.nuversity.digid.services.impl.response.CreateTeacherResponse;
-import enums.DomainType;
-import enums.GroupType;
+
 
 @RestController
 public class ContactController {

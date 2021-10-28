@@ -1,6 +1,6 @@
 package avh.nuversity.lms.services.impl.query;
 
-import java.util.List;
+
 
 public class CoursesByCourseOfferQuery {
 

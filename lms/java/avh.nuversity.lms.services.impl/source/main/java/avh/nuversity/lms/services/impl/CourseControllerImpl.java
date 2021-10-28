@@ -1,5 +1,9 @@
 package avh.nuversity.lms.services.impl;
 
+import java.sql.Date;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -12,13 +16,15 @@ import avh.nuversity.lms.model.AvhCourseComp;
 import avh.nuversity.lms.model.AvhCourseOfferSchedule;
 import avh.nuversity.lms.model.AvhCourseOffering;
 import avh.nuversity.lms.model.AvhMajorCourse;
-import avh.nuversity.lms.model.AvhOfferGradeFormat;
+
 import avh.nuversity.lms.services.impl.query.CourseCompQuery;
-import avh.nuversity.lms.services.impl.query.CoursesByCourseOfferQuery;
+
 import avh.nuversity.lms.services.impl.query.CreateCourseOfferingQuery;
+import avh.nuversity.lms.services.impl.query.CreateCourseOfferingScheduleQuery;
 import avh.nuversity.lms.services.impl.query.CreateCourseQuery;
 import avh.nuversity.lms.services.impl.rep.AvhRep;
 import avh.nuversity.lms.services.impl.response.CourseOfferInfoResponse;
+import avh.nuversity.lms.services.impl.response.CourseOfferScheduleResponse;
 import enums.CourseOfferStatus;
 
 @Component
@@ -70,17 +76,6 @@ public class CourseControllerImpl {
 //		fcs = rep.getOfferGradeFormat().findById("FORMAT A");
 		rep.getCourseOfferingRep().save(co);
 		
-		AvhCourseOfferSchedule schedule = new AvhCourseOfferSchedule();
-		schedule.setIid(UUID.randomUUID().toString());
-		schedule.setOffer(co.getIid());
-		schedule.setMonday(fc.getMonday());
-		schedule.setTuesday(fc.getTuesday());
-		schedule.setWednesday(fc.getWednesday());
-		schedule.setThursday(fc.getThursday());
-		schedule.setFriday(fc.getFriday());
-		schedule.setSaturday(fc.getSaturday());
-		schedule.setSunday(fc.getSunday());
-		rep.getCourseOfferScheduleRep().save(schedule);
 		return ErrorCode.Success;
 	}
 
@@ -98,8 +93,65 @@ public class CourseControllerImpl {
 	}
 
 
-	public AvhCourseOfferSchedule getcourseOfferSchedule(String cId) {
-		return rep.getCourseOfferScheduleRep().findByOffer(cId);
+	public CourseOfferScheduleResponse getcourseOfferSchedule(String cId) {
+		
+		CourseOfferScheduleResponse response = new CourseOfferScheduleResponse();
+		 
+		 String monday = "";
+		 String tuesday = "";
+		 String wednesday = "";
+		 String thursday = "";
+		 String friday = "";
+		 String saturday = "";
+		 String sunday = "";
+		List<AvhCourseOfferSchedule> lst = rep.getCourseOfferScheduleRep().findByOffer(cId);
+		String id = "";
+		 String offer = "";
+		for (AvhCourseOfferSchedule cos : lst) {
+			id=cos.getIid();
+			offer = cos.getOffer();
+			if(cos.getCday() == 1) {
+				monday +=removeSeconds(cos.getFromTime()) +" to " + removeSeconds(cos.getToTime())+" ";
+			}
+			if(cos.getCday() == 2) {
+				tuesday +=removeSeconds(cos.getFromTime()) +" to " + removeSeconds(cos.getToTime())+" ";
+			}
+			if(cos.getCday() == 3) {
+				wednesday +=removeSeconds(cos.getFromTime()) +" to " + removeSeconds(cos.getToTime())+" ";
+			}
+			if(cos.getCday() == 4) {
+				thursday +=removeSeconds(cos.getFromTime()) +" to " + removeSeconds(cos.getToTime())+" ";
+			}
+			if(cos.getCday() == 5) {
+				friday +=removeSeconds(cos.getFromTime()) +" to " + removeSeconds(cos.getToTime())+" ";
+			}
+			if(cos.getCday() == 6) {
+				saturday +=removeSeconds(cos.getFromTime()) +" to " + removeSeconds(cos.getToTime())+" ";
+			}
+			if(cos.getCday() == 7) {
+				sunday +=removeSeconds(cos.getFromTime()) +" to " + removeSeconds(cos.getToTime())+" ";
+			}
+		}
+		response.setId(id);
+		response.setOffer(offer);
+		response.setMonday(monday);
+		response.setTuesday(tuesday);
+		response.setWednesday(wednesday);
+		response.setThursday(thursday);
+		response.setFriday(friday);
+		response.setSaturday(saturday);
+		response.setSunday(sunday);
+		
+		return response;
+		
+//		return rep.getCourseOfferScheduleRep().findByOffer(cId);
+	}
+	
+	private String removeSeconds(Time t1) {
+		Date myDate = new Date(t1.getTime());
+		DateFormat df = new SimpleDateFormat("HH:mm");
+		
+		return df.format(myDate);
 	}
 
 
@@ -128,5 +180,19 @@ public class CourseControllerImpl {
 			response.add(rep.getCourseOfferingRep().findByIid(cs));
 		}
 		return response;
+	}
+
+
+	public String newCourseOfferingSchedule(CreateCourseOfferingScheduleQuery fc) {
+		AvhCourseOfferSchedule sc = new AvhCourseOfferSchedule();
+		sc.setIid(UUID.randomUUID().toString());
+		sc.setOffer(fc.getOffer());
+		sc.setCday(fc.getDay());
+		sc.setFromTime(fc.getStartTime());
+		sc.setToTime(fc.getEndTime());
+		
+		rep.getCourseOfferScheduleRep().save(sc);
+		
+		return ErrorCode.Success;
 	}
 }

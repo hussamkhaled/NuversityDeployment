@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import avh.nuversity.lms.model.AvhContractSheet;
 import avh.nuversity.lms.model.AvhMajor;
 import avh.nuversity.lms.services.impl.MajorControllerImpl;
 import avh.nuversity.lms.services.impl.query.ContractSheetQuery;

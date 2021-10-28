@@ -11,14 +11,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import avh.nuversity.lms.model.AvhCourse;
-import avh.nuversity.lms.model.AvhCourseOfferSchedule;
+
 import avh.nuversity.lms.model.AvhCourseOffering;
 import avh.nuversity.lms.services.impl.CourseControllerImpl;
 import avh.nuversity.lms.services.impl.query.CourseCompQuery;
-import avh.nuversity.lms.services.impl.query.CoursesByCourseOfferQuery;
+
 import avh.nuversity.lms.services.impl.query.CreateCourseOfferingQuery;
+import avh.nuversity.lms.services.impl.query.CreateCourseOfferingScheduleQuery;
 import avh.nuversity.lms.services.impl.query.CreateCourseQuery;
 import avh.nuversity.lms.services.impl.response.CourseOfferInfoResponse;
+import avh.nuversity.lms.services.impl.response.CourseOfferScheduleResponse;
 
 @RestController
 public class CourseController {
@@ -45,6 +47,12 @@ public class CourseController {
 	}
 	
 	@CrossOrigin(origins =CORSTitle.React_Nuversity)
+	@PostMapping("/nuversity/api/lms/courseOfferingSchedule")
+	public String newCourseOfferingSchedule(@RequestBody CreateCourseOfferingScheduleQuery fc) {
+		return svc.newCourseOfferingSchedule(fc);
+	}
+	
+	@CrossOrigin(origins =CORSTitle.React_Nuversity)
 	@GetMapping("/nuversity/api/lms/courseOfferInfo/{id}")
 	public CourseOfferInfoResponse getCourseOfferInfo(@PathVariable("id") String cId) {
 		return svc.getCourseOfferInfo(cId);
@@ -52,7 +60,7 @@ public class CourseController {
 	
 	@CrossOrigin(origins =CORSTitle.React_Nuversity)
 	@GetMapping("/nuversity/api/lms/courseOfferSchedule/{id}")
-	public AvhCourseOfferSchedule getcourseOfferSchedule(@PathVariable("id") String cId) {
+	public CourseOfferScheduleResponse getcourseOfferSchedule(@PathVariable("id") String cId) {
 		return svc.getcourseOfferSchedule(cId);
 	}
 	

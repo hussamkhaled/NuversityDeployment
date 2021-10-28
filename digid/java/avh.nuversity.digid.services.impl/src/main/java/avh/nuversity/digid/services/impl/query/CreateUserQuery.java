@@ -1,7 +1,6 @@
 package avh.nuversity.digid.services.impl.query;
 
-import enums.DomainType;
-import enums.GroupType;
+
 
 //import avh.nuversity.digid.model.enums.DomainType;
 //import avh.nuversity.digid.model.enums.GroupType;

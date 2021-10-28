@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import avh.nuversity.lms.model.AvhStudent;
+
 
 @SpringBootApplication
 @EntityScan(basePackages={"avh.nuversity.lms.model"})

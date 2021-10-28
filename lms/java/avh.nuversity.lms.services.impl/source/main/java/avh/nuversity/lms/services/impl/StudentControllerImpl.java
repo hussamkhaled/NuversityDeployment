@@ -1,7 +1,7 @@
 package avh.nuversity.lms.services.impl;
 
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -77,7 +77,13 @@ public class StudentControllerImpl {
 		std.setIid(fc.getUserid());
 		std.setUserid(fc.getUserid());
 		std.setUniversity(fc.getUniversity());
-		std.setCampus(fc.getCampus());
+		Iterable<AvhCampus> it = rep.getCampusRep().findAll();
+		List<AvhCampus> lstCamp = new ArrayList<AvhCampus>();
+		for(AvhCampus elmt : it){
+			lstCamp.add(elmt);
+		}
+		
+		std.setCampus(lstCamp.get(0).getIid());
 		rep.getStudentRep().save(std);
 		
 		AvhStudentMajor smj = new AvhStudentMajor();
@@ -481,7 +487,7 @@ public class StudentControllerImpl {
 		response.setUserid(sId);
 		AvhFinancialAccount acc = rep.getFinantialAccountRep().findByUserid(sId);
 		response.setAccount(acc.getIid());
-		DecimalFormat df = new DecimalFormat("#.##");
+		
 //		response.setAmount(""+acc.getAmount().fo);
 		response.setAmount(String.format("%.2f", acc.getAmount() * -1) +" " + acc.getCurrency());
 		response.setAsof(LocalDate.now());
@@ -644,15 +650,18 @@ public class StudentControllerImpl {
 	public List<StudentCalendarResponse> getStudentCalendar(String sId, String mId) {
 		List<StudentCalendarResponse> response = new ArrayList<StudentCalendarResponse>();
 		LocalDate startDate = LocalDate.of(2021, 10, 01);
-		LocalDate endDate = LocalDate.of(2022, 02, 01);
+		LocalDate endDate = LocalDate.of(2022,02, 25);
 		List<AvhEnrolmentRequest> lenr = rep.getEnrolmentRequestRep().findByStudentBean(rep.getStudentRep().findByUserid(sId));
 		for (AvhEnrolmentRequest enr : lenr) {
 			if(enr.getStatus().equals(EnrolmentStatus.ACCEPTED.toString())) {
-				AvhCourseOfferSchedule schedule = rep.getCourseOfferScheduleRep().findByOffer(enr.getCourseOffering().getIid());
 				for(LocalDate date = startDate; date.isBefore(endDate); date=date.plusDays(1)) {
 					if(date.getDayOfWeek().equals(DayOfWeek.MONDAY)) {
-						if(schedule.getMonday().length() > 0) {
-							String[] time = schedule.getMonday().split(" ");
+						List<AvhCourseOfferSchedule> schedule = rep.getCourseOfferScheduleRep().findByOffer(enr.getCourseOffering().getIid());
+						for (AvhCourseOfferSchedule sc : schedule) {
+							
+						if(sc.getCday() == 1) {
+							String stime = sc.getFromTime().toString() + " to " +sc.getToTime().toString();
+							String[] time = stime.split(" ");
 							String[] begin = time[0].split(":");
 							int startHour = Integer.parseInt(begin[0]);
 							int StartMin = Integer.parseInt(begin[1]);
@@ -677,10 +686,15 @@ public class StudentControllerImpl {
 							response.add(res);
 						}
 					}
+					}
 					
 						if(date.getDayOfWeek().equals(DayOfWeek.TUESDAY)) {
-							if(schedule.getTuesday().length() > 0) {
-								String[] time = schedule.getTuesday().split(" ");
+							List<AvhCourseOfferSchedule> schedule = rep.getCourseOfferScheduleRep().findByOffer(enr.getCourseOffering().getIid());
+							for (AvhCourseOfferSchedule sc : schedule) {
+								
+							if(sc.getCday() == 2) {
+								String stime = sc.getFromTime().toString() + " to " +sc.getToTime().toString();
+								String[] time = stime.split(" ");
 								String[] begin = time[0].split(":");
 								int startHour = Integer.parseInt(begin[0]);
 								int StartMin = Integer.parseInt(begin[1]);
@@ -704,10 +718,15 @@ public class StudentControllerImpl {
 								
 								response.add(res);
 							}
+							}
 						}
 							if(date.getDayOfWeek().equals(DayOfWeek.WEDNESDAY)) {
-								if(schedule.getWednesday().length() > 0) {
-									String[] time = schedule.getWednesday().split(" ");
+								List<AvhCourseOfferSchedule> schedule = rep.getCourseOfferScheduleRep().findByOffer(enr.getCourseOffering().getIid());
+								for (AvhCourseOfferSchedule sc : schedule) {
+									
+								if(sc.getCday() == 3) {
+									String stime = sc.getFromTime().toString() + " to " +sc.getToTime().toString();
+									String[] time = stime.split(" ");
 									String[] begin = time[0].split(":");
 									int startHour = Integer.parseInt(begin[0]);
 									int StartMin = Integer.parseInt(begin[1]);
@@ -731,10 +750,15 @@ public class StudentControllerImpl {
 									
 									response.add(res);
 								}
+								}
 							}
 								if(date.getDayOfWeek().equals(DayOfWeek.THURSDAY)) {
-									if(schedule.getThursday().length() > 0) {
-										String[] time = schedule.getThursday().split(" ");
+									List<AvhCourseOfferSchedule> schedule = rep.getCourseOfferScheduleRep().findByOffer(enr.getCourseOffering().getIid());
+									for (AvhCourseOfferSchedule sc : schedule) {
+										
+									if(sc.getCday() == 4) {
+										String stime = sc.getFromTime().toString() + " to " +sc.getToTime().toString();
+										String[] time = stime.split(" ");
 										String[] begin = time[0].split(":");
 										int startHour = Integer.parseInt(begin[0]);
 										int StartMin = Integer.parseInt(begin[1]);
@@ -759,9 +783,14 @@ public class StudentControllerImpl {
 										response.add(res);
 									}
 								}
+								}
 									if(date.getDayOfWeek().equals(DayOfWeek.FRIDAY)) {
-										if(schedule.getFriday().length() > 0) {
-											String[] time = schedule.getFriday().split(" ");
+										List<AvhCourseOfferSchedule> schedule = rep.getCourseOfferScheduleRep().findByOffer(enr.getCourseOffering().getIid());
+										for (AvhCourseOfferSchedule sc : schedule) {
+											
+										if(sc.getCday() == 5) {
+											String stime = sc.getFromTime().toString() + " to " +sc.getToTime().toString();
+											String[] time = stime.split(" ");
 											String[] begin = time[0].split(":");
 											int startHour = Integer.parseInt(begin[0]);
 											int StartMin = Integer.parseInt(begin[1]);
@@ -785,10 +814,15 @@ public class StudentControllerImpl {
 											
 											response.add(res);
 										}
+										}
 									}
 										if(date.getDayOfWeek().equals(DayOfWeek.SATURDAY)) {
-											if(schedule.getSaturday().length() > 0) {
-												String[] time = schedule.getSaturday().split(" ");
+											List<AvhCourseOfferSchedule> schedule = rep.getCourseOfferScheduleRep().findByOffer(enr.getCourseOffering().getIid());
+											for (AvhCourseOfferSchedule sc : schedule) {
+												
+											if(sc.getCday() == 6) {
+												String stime = sc.getFromTime().toString() + " to " +sc.getToTime().toString();
+												String[] time = stime.split(" ");
 												String[] begin = time[0].split(":");
 												int startHour = Integer.parseInt(begin[0]);
 												int StartMin = Integer.parseInt(begin[1]);
@@ -812,10 +846,15 @@ public class StudentControllerImpl {
 												
 												response.add(res);
 											}
+											}
 										}
 											if(date.getDayOfWeek().equals(DayOfWeek.SUNDAY)) {
-												if(schedule.getSunday().length() > 0) {
-													String[] time = schedule.getSunday().split(" ");
+												List<AvhCourseOfferSchedule> schedule = rep.getCourseOfferScheduleRep().findByOffer(enr.getCourseOffering().getIid());
+												for (AvhCourseOfferSchedule sc : schedule) {
+													
+												if(sc.getCday() == 7) {
+													String stime = sc.getFromTime().toString() + " to " +sc.getToTime().toString();
+													String[] time = stime.split(" ");
 													String[] begin = time[0].split(":");
 													int startHour = Integer.parseInt(begin[0]);
 													int StartMin = Integer.parseInt(begin[1]);
@@ -840,6 +879,7 @@ public class StudentControllerImpl {
 													response.add(res);
 												
 											}
+												}
 										}
 									}
 								}
@@ -857,22 +897,7 @@ public class StudentControllerImpl {
 	
 }
 	public int testSplit(String sId, String mId) {
-		List<Integer> resp = new ArrayList<Integer>();
-		String[] time =null;
-		List<AvhEnrolmentRequest> lenr = rep.getEnrolmentRequestRep().findByStudentBean(rep.getStudentRep().findByUserid(sId));
-		for (AvhEnrolmentRequest enr : lenr) {
-			AvhCourseOfferSchedule sc = rep.getCourseOfferScheduleRep().findByOffer(enr.getCourseOffering().getIid());
-			
-			 time = sc.getMonday().split(" ");
-//			 return time;
-			String[] begin = time[0].split(":");
-			int e = Integer.parseInt(begin[0]);
-			return e;
-//			int startHour = Integer.parseInt(begin[0]);
-//			int StartMin = Integer.parseInt(begin[1]);
-//			resp.add(startHour);
-//			resp.add(StartMin);
-		}
+	
 		return 0;
 	}
 	public List<AllPendingStudentResponse> allPendingStudent() {
@@ -883,8 +908,13 @@ public class StudentControllerImpl {
 			psr.setStudentid(application.getApplicantBean().getUserid());
 			psr.setMajorId(application.getMajorBean().getIid());
 			psr.setMajorName(application.getMajorBean().getName());
-			psr.setCampusId(rep.getCampusRep().findByIid("6f86e6ea-9a87-4ace-9a3e-b7b256a4e712").getIid());
-			psr.setCampusName(rep.getCampusRep().findByIid("6f86e6ea-9a87-4ace-9a3e-b7b256a4e712").getName());
+			Iterable<AvhCampus> it = rep.getCampusRep().findAll();
+			List<AvhCampus> lstCamp = new ArrayList<AvhCampus>();
+			for(AvhCampus elmt : it){
+				lstCamp.add(elmt);
+			}
+			psr.setCampusId(lstCamp.get(0).getIid());//rep.getCampusRep().findByIid("6f86e6ea-9a87-4ace-9a3e-b7b256a4e712").getIid());
+			psr.setCampusName(lstCamp.get(0).getName());//rep.getCampusRep().findByIid("6f86e6ea-9a87-4ace-9a3e-b7b256a4e712").getName());
 			
 			response.add(psr);
 		}

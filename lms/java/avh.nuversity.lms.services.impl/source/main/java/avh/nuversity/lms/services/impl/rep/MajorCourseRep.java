@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import avh.nuversity.lms.model.AvhCourse;
+
 import avh.nuversity.lms.model.AvhMajor;
 import avh.nuversity.lms.model.AvhMajorCourse;
 

@@ -1,6 +1,6 @@
 package avh.nuversity.digid.services.impl.response;
 
-import enums.GroupType;
+
 
 public class AuthenticateResponse {
 	private String email;

@@ -2,6 +2,7 @@ package avh.nuversity.lms.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.sql.Time;
 
 
 /**
@@ -17,21 +18,15 @@ public class AvhCourseOfferSchedule implements Serializable {
 	@Id
 	private String iid;
 
-	private String friday;
+	private Integer cday;
 
-	private String monday;
+	@Column(name="from_time")
+	private Time fromTime;
 
 	private String offer;
 
-	private String saturday;
-
-	private String sunday;
-
-	private String thursday;
-
-	private String tuesday;
-
-	private String wednesday;
+	@Column(name="to_time")
+	private Time toTime;
 
 	public AvhCourseOfferSchedule() {
 	}
@@ -44,20 +39,20 @@ public class AvhCourseOfferSchedule implements Serializable {
 		this.iid = iid;
 	}
 
-	public String getFriday() {
-		return this.friday;
+	public Integer getCday() {
+		return this.cday;
 	}
 
-	public void setFriday(String friday) {
-		this.friday = friday;
+	public void setCday(Integer cday) {
+		this.cday = cday;
 	}
 
-	public String getMonday() {
-		return this.monday;
+	public Time getFromTime() {
+		return this.fromTime;
 	}
 
-	public void setMonday(String monday) {
-		this.monday = monday;
+	public void setFromTime(Time fromTime) {
+		this.fromTime = fromTime;
 	}
 
 	public String getOffer() {
@@ -68,44 +63,12 @@ public class AvhCourseOfferSchedule implements Serializable {
 		this.offer = offer;
 	}
 
-	public String getSaturday() {
-		return this.saturday;
+	public Time getToTime() {
+		return this.toTime;
 	}
 
-	public void setSaturday(String saturday) {
-		this.saturday = saturday;
-	}
-
-	public String getSunday() {
-		return this.sunday;
-	}
-
-	public void setSunday(String sunday) {
-		this.sunday = sunday;
-	}
-
-	public String getThursday() {
-		return this.thursday;
-	}
-
-	public void setThursday(String thursday) {
-		this.thursday = thursday;
-	}
-
-	public String getTuesday() {
-		return this.tuesday;
-	}
-
-	public void setTuesday(String tuesday) {
-		this.tuesday = tuesday;
-	}
-
-	public String getWednesday() {
-		return this.wednesday;
-	}
-
-	public void setWednesday(String wednesday) {
-		this.wednesday = wednesday;
+	public void setToTime(Time toTime) {
+		this.toTime = toTime;
 	}
 
 }
