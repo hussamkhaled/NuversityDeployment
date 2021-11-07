@@ -2,7 +2,12 @@ package avh.nuversity.digid.services.impl;
 
 
 public class FileStorageException extends RuntimeException {
-    public FileStorageException(String message) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -4212522156153037269L;
+
+	public FileStorageException(String message) {
         super(message);
     }
 

@@ -2,7 +2,7 @@ package avh.nuversity.digid.services.impl;
 
 public interface DigidConstants {
 	public static final int MAX_TRY = 5;
-	public static final String LinkSentForgetPassword="http://localhost:3000/ChangeForgottenPassword";
+	public static final String LinkSentForgetPassword="http://45.9.190.133:3000/ChangeForgottenPassword";
 	public static final int TimeToExpiryForgetPassMail = 10;
 	public static final String MailTitleForgetPassword = "Forget Password";
 	
@@ -12,7 +12,7 @@ public interface DigidConstants {
 //	public static final String ContactPhotoPath = "/PhotosContactPhotos/";	
 	public static final String IdDocumentPhoto = "IdDocumentPhoto";
 	public static final String IdDocumentPhotoPath = "IdDocumentPhoto";
-	public static final String LinkSentSetPassword = "http://localhost:3000/SetPassword";
+	public static final String LinkSentSetPassword = "http://45.9.190.133:3000/SetPassword";
 	public static final int TimeToExpirySetPassMail = 20;
 	public static final String MailTitleSetPassword = null;
 	public static final String ContactPhotoPath = "photos/Contact";

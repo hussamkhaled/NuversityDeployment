@@ -5,7 +5,12 @@ package avh.nuversity.digid.services.impl;
 
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	public class MyFileNotFoundException extends RuntimeException {
-	    public MyFileNotFoundException(String message) {
+	    /**
+		 * 
+		 */
+		private static final long serialVersionUID = -7934134458016353744L;
+
+		public MyFileNotFoundException(String message) {
 	        super(message);
 	    }
 

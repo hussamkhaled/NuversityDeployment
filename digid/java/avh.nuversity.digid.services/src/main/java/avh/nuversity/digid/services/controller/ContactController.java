@@ -31,6 +31,7 @@ public class ContactController {
 	@Autowired
 	private ContactControllerImpl svc;
 	
+	
 	@CrossOrigin(origins =CORSTitle.React_Nuversity)
 	@GetMapping("/nuversity/api/digid/contact/{id}")
 	public AvhContact getContact(@PathVariable("id") String cttId) {

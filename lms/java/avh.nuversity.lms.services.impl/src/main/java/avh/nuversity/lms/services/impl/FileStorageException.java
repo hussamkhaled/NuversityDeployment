@@ -2,7 +2,12 @@ package avh.nuversity.lms.services.impl;
 
 
 public class FileStorageException extends RuntimeException {
-    public FileStorageException(String message) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4119710592393189795L;
+
+	public FileStorageException(String message) {
         super(message);
     }
 
