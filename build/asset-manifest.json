@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.32926c23.chunk.css",
+    "main.js": "/static/js/main.f8694ca9.chunk.js",
+    "main.js.map": "/static/js/main.f8694ca9.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.26595768.js",
+    "runtime-main.js.map": "/static/js/runtime-main.26595768.js.map",
+    "static/js/2.154a57d9.chunk.js": "/static/js/2.154a57d9.chunk.js",
+    "static/js/2.154a57d9.chunk.js.map": "/static/js/2.154a57d9.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.32926c23.chunk.css.map": "/static/css/main.32926c23.chunk.css.map",
+    "static/js/2.154a57d9.chunk.js.LICENSE.txt": "/static/js/2.154a57d9.chunk.js.LICENSE.txt",
+    "static/media/AnnoucementImga.099c313e.png": "/static/media/AnnoucementImga.099c313e.png",
+    "static/media/HP_Banner.c89467cb.png": "/static/media/HP_Banner.c89467cb.png",
+    "static/media/Logo.bd971b24.png": "/static/media/Logo.bd971b24.png",
+    "static/media/MoreMountainsMorePeaks.b27d6484.jpeg": "/static/media/MoreMountainsMorePeaks.b27d6484.jpeg",
+    "static/media/ContainerMain.module.css": "/static/media/payment backround-01.ee8e0f8a.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.26595768.js",
+    "static/js/2.154a57d9.chunk.js",
+    "static/css/main.32926c23.chunk.css",
+    "static/js/main.f8694ca9.chunk.js"
+  ]
+}
