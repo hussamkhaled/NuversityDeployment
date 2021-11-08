@@ -25,14 +25,15 @@ import avh.nuversity.digid.services.impl.response.ResetPasswordResponse;
 public class UserController {
 	@Autowired
 	private UserControllerImpl svc;
-	@Autowired
-	private SendEmailService ses;
+//	@Autowired
+//	private SendEmailService ses;
 	
 	@CrossOrigin(origins =CORSTitle.React_Nuversity)
 	@GetMapping("/nuversity/api/digid/user/{id}")
 	public AvhUser getUser(@PathVariable("id") String usrId) {
 		return svc.getUser(usrId);
 	}
+	
 	
 	@CrossOrigin(origins =CORSTitle.React_Nuversity)
 	@PostMapping("/nuversity/api/digid/user")
@@ -80,13 +81,5 @@ public class UserController {
 	@PostMapping("/nuversity/api/digid/makeStudent")
 	public MakeStudentResponse makeStudent(@RequestParam(value="userid") String userid) throws Exception {
 		return svc.makeStudent(userid);
-	}
-	
-	@CrossOrigin(origins =CORSTitle.React_Nuversity)
-	@PostMapping("/nuversity/api/digid/sendEmail")
-	public String sendEmail() {
-		
-		ses.sendEmail("hussam.h.khaled@gmail.com", "hello", "spring");
-		return "Done";
 	}
 }

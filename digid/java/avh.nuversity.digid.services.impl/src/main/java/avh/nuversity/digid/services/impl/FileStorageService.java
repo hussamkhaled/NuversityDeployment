@@ -17,7 +17,7 @@ import java.nio.file.StandardCopyOption;
 @Service
 public class FileStorageService {
 
-    private Path fileStorageLocation;
+//    private Path fileStorageLocation;
     @Autowired
     public FileStorageService(){//FileStorageProperties fileStorageProperties) {
 //        this.fileStorageLocation = Paths.get(fileStorageProperties.getUploadDir())

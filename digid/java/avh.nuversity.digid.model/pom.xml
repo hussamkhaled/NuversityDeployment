@@ -7,6 +7,11 @@
 	<artifactId>avh.nuversity.digid.model</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>avh.nuversity.digid.model</name>
+	<packaging>jar</packaging>
+	<properties>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
+	</properties>
 
 	<dependencies>
 		<dependency>
