@@ -367,7 +367,9 @@ public class UserControllerImpl {
 		}
 		
 		LocalDateTime edate = LocalDateTime.now();
-		if(edate.compareTo(prq.getExpirydate())>0 || prq.getRstatus().equals(enums.PendingRequestStatus.EXPIRED.toString()) || prq.getRstatus().equals(enums.PendingRequestStatus.CONFIRMED.toString())) {
+//		if(edate.compareTo(prq.getExpirydate())>0 || prq.getRstatus().equals(enums.PendingRequestStatus.EXPIRED.toString()) || prq.getRstatus().equals(enums.PendingRequestStatus.CONFIRMED.toString())) {
+		if ((prq.getRstatus().equals(enums.PendingRequestStatus.EXPIRED.toString())) ||
+			(prq.getRstatus().equals(enums.PendingRequestStatus.CONFIRMED.toString()))) {
 			prq.setRstatus(enums.PendingRequestStatus.EXPIRED.toString());
 			rep.getPengingRep().save(prq);
 			return ErrorCode.linkExpired;		

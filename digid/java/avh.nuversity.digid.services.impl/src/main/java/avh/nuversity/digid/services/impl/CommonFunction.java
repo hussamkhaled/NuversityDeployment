@@ -2,13 +2,16 @@ package avh.nuversity.digid.services.impl;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Calendar;
 import java.util.Properties;
+import java.util.TimeZone;
 
 import avh.nuversity.digid.model.AvhPendingRequest;
 import avh.nuversity.digid.services.impl.rep.AvhRep;
@@ -41,7 +44,14 @@ public class CommonFunction {
 			LocalDateTime idate = LocalDateTime.now();
 			apr.setIssuedate(idate);
 			LocalDateTime edate = LocalDateTime.now().plusMinutes(timetoexpiryforgetpassmail);
-			apr.setExpirydate(edate);
+			
+			Calendar c = Calendar.getInstance();
+			c.set(2030, 3, 23);
+			TimeZone tz = c.getTimeZone();
+			ZoneId zi = tz.toZoneId();
+			LocalDateTime ldt = LocalDateTime.ofInstant(c.toInstant(), zi);
+//			apr.setExpirydate(edate);
+			apr.setExpirydate(ldt);
 			apr.setRtype(updatePassword.toString());
 			apr.setUsrid(usrId);
 			rep.getPengingRep().save(apr);
